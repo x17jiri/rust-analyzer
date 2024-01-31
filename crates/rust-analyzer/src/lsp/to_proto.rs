@@ -8,8 +8,8 @@ use std::{
 use ide::{
     Annotation, AnnotationKind, Assist, AssistKind, Cancellable, CompletionItem,
     CompletionItemKind, CompletionRelevance, Documentation, FileId, FileRange, FileSystemEdit,
-    Fold, FoldKind, Highlight, HlMod, HlOperator, HlPunct, HlRange, HlTag, Indel,
-    InlayFieldsToResolve, InlayHint, InlayHintLabel, InlayHintLabelPart, InlayKind, Markup,
+    Fold, FoldKind, Highlight, HlLogicalOperator, HlMod, HlOperator, HlPunct, HlRange, HlTag,
+    Indel, InlayFieldsToResolve, InlayHint, InlayHintLabel, InlayHintLabelPart, InlayKind, Markup,
     NavigationTarget, ReferenceCategory, RenameError, Runnable, Severity, SignatureHelp,
     SnippetEdit, SourceChange, StructureNodeKind, SymbolKind, TextEdit, TextRange, TextSize,
 };
@@ -685,7 +685,10 @@ fn semantic_token_type_and_modifiers(
         HlTag::Operator(op) => match op {
             HlOperator::Bitwise => semantic_tokens::BITWISE,
             HlOperator::Arithmetic => semantic_tokens::ARITHMETIC,
-            HlOperator::Logical => semantic_tokens::LOGICAL,
+            HlOperator::Logical(op) => match op {
+                HlLogicalOperator::Not => semantic_tokens::LOGICAL_NOT,
+                _ => semantic_tokens::LOGICAL,
+            },
             HlOperator::Comparison => semantic_tokens::COMPARISON,
             HlOperator::Other => semantic_tokens::OPERATOR,
         },

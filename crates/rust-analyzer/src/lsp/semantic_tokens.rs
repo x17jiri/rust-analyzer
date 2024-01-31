@@ -84,6 +84,7 @@ define_semantic_token_types![
         (LABEL, "label"),
         (LIFETIME, "lifetime"),
         (LOGICAL, "logical") => OPERATOR,
+        (LOGICAL_NOT, "logicalNot") => OPERATOR,
         (MACRO_BANG, "macroBang") => MACRO,
         (PARENTHESIS, "parenthesis"),
         (PUNCTUATION, "punctuation"),

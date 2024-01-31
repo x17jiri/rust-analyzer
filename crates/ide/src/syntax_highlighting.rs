@@ -30,7 +30,7 @@ use crate::{
         macro_::MacroHighlighter,
         tags::Highlight,
     },
-    FileId, HlMod, HlOperator, HlPunct, HlTag,
+    FileId, HlLogicalOperator, HlMod, HlOperator, HlPunct, HlTag,
 };
 
 pub(crate) use html::highlight_as_html;
@@ -54,6 +54,8 @@ pub struct HighlightConfig {
     pub operator: bool,
     /// Whether to specialize operator highlights
     pub specialize_operator: bool,
+    /// Whether to specialize operator `!` highlights
+    pub specialize_logical_not: bool,
     /// Whether to inject highlights into doc comments
     pub inject_doc_comment: bool,
     /// Whether to highlight the macro call bang
@@ -545,6 +547,9 @@ fn filter_by_config(highlight: &mut Highlight, config: HighlightConfig) -> bool 
         HlTag::Operator(_) if !config.operator && highlight.mods.is_empty() => return false,
         tag @ HlTag::Operator(_) if !config.specialize_operator => {
             *tag = HlTag::Operator(HlOperator::Other);
+        }
+        tag @ HlTag::Operator(HlOperator::Logical(..)) if !config.specialize_logical_not => {
+            *tag = HlTag::Operator(HlOperator::Logical(HlLogicalOperator::Other));
         }
         _ => (),
     }

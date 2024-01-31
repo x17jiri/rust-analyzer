@@ -112,7 +112,7 @@ pub use crate::{
     signature_help::SignatureHelp,
     static_index::{StaticIndex, StaticIndexedFile, TokenId, TokenStaticData},
     syntax_highlighting::{
-        tags::{Highlight, HlMod, HlMods, HlOperator, HlPunct, HlTag},
+        tags::{Highlight, HlLogicalOperator, HlMod, HlMods, HlOperator, HlPunct, HlTag},
         HighlightConfig, HlRange,
     },
 };

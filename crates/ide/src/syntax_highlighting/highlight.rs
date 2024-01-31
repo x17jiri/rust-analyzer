@@ -13,7 +13,7 @@ use syntax::{
 };
 
 use crate::{
-    syntax_highlighting::tags::{HlOperator, HlPunct},
+    syntax_highlighting::tags::{HlLogicalOperator, HlOperator, HlPunct},
     Highlight, HlMod, HlTag,
 };
 
@@ -106,7 +106,7 @@ fn punctuation(
         }
         (T![!], MACRO_CALL | MACRO_RULES) => HlPunct::MacroBang.into(),
         (T![!], NEVER_TYPE) => HlTag::BuiltinType.into(),
-        (T![!], PREFIX_EXPR) => HlOperator::Logical.into(),
+        (T![!], PREFIX_EXPR) => HlOperator::Logical(HlLogicalOperator::Not).into(),
         (T![*], PTR_TYPE) => HlTag::Keyword.into(),
         (T![*], PREFIX_EXPR) => {
             let is_raw_ptr = (|| {
@@ -136,7 +136,7 @@ fn punctuation(
         (T![|=] | T![&=] | T![^=] | T![>>=] | T![<<=], BIN_EXPR) => {
             Highlight::from(HlOperator::Bitwise) | HlMod::Mutable
         }
-        (T![&&] | T![||], BIN_EXPR) => HlOperator::Logical.into(),
+        (T![&&] | T![||], BIN_EXPR) => HlOperator::Logical(HlLogicalOperator::Other).into(),
         (T![>] | T![<] | T![==] | T![>=] | T![<=] | T![!=], BIN_EXPR) => {
             HlOperator::Comparison.into()
         }

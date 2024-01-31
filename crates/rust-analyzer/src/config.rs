@@ -555,6 +555,11 @@ config_data! {
         /// When enabled, rust-analyzer will emit special token types for operator tokens instead
         /// of the generic `operator` token type.
         semanticHighlighting_operator_specialization_enable: bool = "false",
+        /// Use specialized semantic token for operator `!`.
+        ///
+        /// When enabled, rust-analyzer will emit special token type for operator `!` tokens instead
+        /// of the generic `operator` token type.
+        semanticHighlighting_operator_specialization_logicalNot_enable: bool = "false",
         /// Use semantic tokens for punctuation.
         ///
         /// When disabled, rust-analyzer will emit semantic tokens only for punctuation tokens when
@@ -1625,6 +1630,9 @@ impl Config {
             macro_bang: self.data.semanticHighlighting_punctuation_separate_macro_bang,
             operator: self.data.semanticHighlighting_operator_enable,
             specialize_operator: self.data.semanticHighlighting_operator_specialization_enable,
+            specialize_logical_not: self
+                .data
+                .semanticHighlighting_operator_specialization_logicalNot_enable,
             inject_doc_comment: self.data.semanticHighlighting_doc_comment_inject_enable,
             syntactic_name_ref_highlighting: false,
         }

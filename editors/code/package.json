@@ -1598,6 +1598,11 @@
                     "default": false,
                     "type": "boolean"
                 },
+                "rust-analyzer.semanticHighlighting.operator.specialization.logicalNot.enable": {
+                    "markdownDescription": "Use specialized semantic token for operator `!`.\n\nWhen enabled, rust-analyzer will emit special token type for operator `!` tokens instead\nof the generic `operator` token type.",
+                    "default": false,
+                    "type": "boolean"
+                },
                 "rust-analyzer.semanticHighlighting.punctuation.enable": {
                     "markdownDescription": "Use semantic tokens for punctuation.\n\nWhen disabled, rust-analyzer will emit semantic tokens only for punctuation tokens when\nthey are tagged with modifiers or have a special role.",
                     "default": false,

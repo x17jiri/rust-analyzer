@@ -870,6 +870,14 @@ Use specialized semantic tokens for operators.
 When enabled, rust-analyzer will emit special token types for operator tokens instead
 of the generic `operator` token type.
 --
+[[rust-analyzer.semanticHighlighting.operator.specialization.logicalNot.enable]]rust-analyzer.semanticHighlighting.operator.specialization.logicalNot.enable (default: `false`)::
++
+--
+Use specialized semantic token for operator `!`.
+
+When enabled, rust-analyzer will emit special token type for operator `!` tokens instead
+of the generic `operator` token type.
+--
 [[rust-analyzer.semanticHighlighting.punctuation.enable]]rust-analyzer.semanticHighlighting.punctuation.enable (default: `false`)::
 +
 --

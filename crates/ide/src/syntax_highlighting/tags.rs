@@ -115,13 +115,21 @@ pub enum HlPunct {
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub enum HlLogicalOperator {
+    /// !
+    Not,
+    /// &&, ||
+    Other,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum HlOperator {
     /// |, &, !, ^, |=, &=, ^=
     Bitwise,
     /// +, -, *, /, +=, -=, *=, /=
     Arithmetic,
     /// &&, ||, !
-    Logical,
+    Logical(HlLogicalOperator),
     /// >, <, ==, >=, <=, !=
     Comparison,
     ///
@@ -186,7 +194,10 @@ impl HlTag {
             HlTag::Operator(op) => match op {
                 HlOperator::Bitwise => "bitwise",
                 HlOperator::Arithmetic => "arithmetic",
-                HlOperator::Logical => "logical",
+                HlOperator::Logical(op) => match op {
+                    HlLogicalOperator::Not => "logical_not",
+                    _ => "logical",
+                },
                 HlOperator::Comparison => "comparison",
                 HlOperator::Other => "operator",
             },

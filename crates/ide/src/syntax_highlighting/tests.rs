@@ -11,6 +11,7 @@ const HL_CONFIG: HighlightConfig = HighlightConfig {
     punctuation: true,
     specialize_punctuation: true,
     specialize_operator: true,
+    specialize_logical_not: false,
     operator: true,
     inject_doc_comment: true,
     macro_bang: true,
